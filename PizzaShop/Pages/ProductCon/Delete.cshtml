@@ -1,0 +1,58 @@
+﻿@page
+@model PizzaShop.Pages.ProductCon.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Products</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Products.productName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Products.productName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Products.suppliersId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Products.suppliersId.supplierId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Products.categoriesId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Products.categoriesId.categoryId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Products.quantityPerUnit)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Products.quantityPerUnit)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Products.unitPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Products.unitPrice)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Products.productImage)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Products.productImage)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Products.productId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="/Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,82 @@
+﻿@page
+@using Microsoft.AspNetCore.Http
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h2>Pizza menu</h2>
+
+<div class="text-center">
+    <h1 class="display-4">
+        Welcome
+        @if (Model.acc != null)
+        {
+            @Model.acc.fullname
+        }
+        else if (Model.cust != null)
+        {
+            @Model.cust.contactName
+        }
+    </h1>
+</div>
+
+@if (Model.acc != null && Model.acc.type == 1)
+{
+    <div class="d-flex flex-row-reverse">
+        <div class="p-2">
+            <a asp-page="/ProductCon/Create" class="btn btn-primary">Create new pizza</a>
+        </div>
+    </div>
+}
+<form method="get" asp-page="Index">
+    search: <input name="searchName" type="text" value="@Model.searchName" />
+    <button class="btn btn-outline-primary">search</button>
+</form>
+
+<div class="mt-4">
+    @if (Model.acc != null && Model.acc.type == 1)
+    {
+        <div class="d-flex flex-row mb-3">
+            <div class="p-2">
+                <a class="btn btn-outline-info" asp-page="/CatCon/Index">Category</a>
+            </div>
+            <div class="p-2">
+                <a class="btn btn-outline-info" asp-page="/SupCon/Index">supply</a>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row">
+    @foreach (var item in Model.Products)
+    {
+        <div class="col-3">
+            <div class="card mb-3" style="width: 18rem;">
+                <a asp-page="ProductCon/Details" asp-route-id="@item.productId">
+                    <img src="@item.productImage" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <a asp-page="ProductCon/Details" asp-route-id="@item.productId"> <h5 class="card-title">@item.productName</h5></a>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+                    <p>$ @item.unitPrice</p>
+                    <p class="fw-bold">Category: @item.categoriesId.categoryName </p>
+
+                    @if (Model.acc != null)
+                    {
+                        <a href="#" class="btn btn-primary">Add pizza</a>
+                        <a asp-page="/ProductCon/Edit" asp-route-id="@item.productId" class="btn btn-info">update pizza</a>
+                        <a asp-page="/ProductCon/Delete" asp-route-id="@item.productId" class="btn btn-danger">delete pizza</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="mt-4"></div>
+
+<div class="text-center">
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>

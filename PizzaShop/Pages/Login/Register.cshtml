@@ -1,0 +1,23 @@
+﻿@page
+@model PizzaShop.Pages.Login.RegisterModel
+@{
+}
+<form method="post">
+    <div>
+        Phone: 
+        <input class="form-control" required type="text" asp-for="customers.phone" />
+    </div>
+    <div>
+        Password: 
+        <input class="form-control" required type="text" asp-for="customers.password" />
+    </div>
+    <div>
+        Contact name: 
+        <input class="form-control" required type="text" asp-for="customers.contactName" />
+    </div>
+    <div>
+        Address: 
+        <input class="form-control" required type="text" asp-for="customers.address" />
+    </div>
+    <button class="btn btn-success">Register</button>
+</form>

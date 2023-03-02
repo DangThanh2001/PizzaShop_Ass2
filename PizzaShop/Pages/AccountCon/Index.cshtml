@@ -1,0 +1,54 @@
+﻿@page
+@model PizzaShop.Pages.AccountCon.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Account[0].username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account[0].password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account[0].fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account[0].type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Account) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.accountId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.accountId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.accountId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

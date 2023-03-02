@@ -1,0 +1,66 @@
+﻿@page
+@model PizzaShop.Pages.ProductCon.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].productName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].suppliersId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].categoriesId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].quantityPerUnit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].unitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].productImage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Products) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.productName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.suppliersId.supplierId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.categoriesId.categoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantityPerUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.unitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productImage)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.productId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.productId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.productId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

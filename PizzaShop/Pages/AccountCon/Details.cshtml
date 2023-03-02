@@ -1,0 +1,43 @@
+﻿@page
+@model PizzaShop.Pages.AccountCon.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Account</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.username)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Account.username)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.password)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Account.password)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.fullname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Account.fullname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Account.type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Account.type)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Account?.accountId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
