@@ -7,9 +7,13 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+@if (Model.acc.type == 1)
+{
+    <p>
+        <a asp-page="Create">Create New</a>
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -29,26 +33,29 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Account) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.username)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fullname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.type)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.accountId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.accountId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.accountId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Account)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fullname)
+                </td>
+                <td>
+                    @(item.type == 1 ? "admin" : "staff")
+                </td>
+                <td>
+                    <a class="btn btn-outline-info @(item.type == 1 && Model.acc.type != 1 ? "disabled" : "")"
+                   asp-page="./Edit" asp-route-id="@item.accountId">Edit</a>
+                    <a class="btn btn-outline-info" asp-page="./Details" asp-route-id="@item.accountId">Details</a>
+                    <a class="btn btn-outline-danger @(item.type == 1 && Model.acc.type != 1 ? "disabled" : "")"
+                   asp-page="./Delete" asp-route-id="@item.accountId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
