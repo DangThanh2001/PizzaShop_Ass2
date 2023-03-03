@@ -30,6 +30,14 @@
     </div>
 }
 <form method="get" asp-page="Index">
+    Category:
+    <select asp-for="catSearch" name="catSearch">
+        <option value="">All</option>
+        @foreach (var item in Model.listCat)
+        {
+            <option value="@item.categoryId">@item.categoryName</option>
+        }
+    </select>
     search: <input name="searchName" type="text" value="@Model.searchName" />
     <button class="btn btn-outline-primary">search</button>
 </form>

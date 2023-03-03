@@ -8,7 +8,9 @@ namespace PizzaShop.Pages
 {
     public class IndexModel : PageModel
     {
+        public List<Category> listCat;
         public string searchName { get; set; }
+        public int? catSearch { get; set; }
         private readonly PizzaShop.Data.PizzaShopContext _context;
         private readonly ILogger<IndexModel> _logger;
         public const string SessionKeyLogin = "_login";
@@ -22,7 +24,7 @@ namespace PizzaShop.Pages
 
         public IList<Products> Products { get; set; } = default!;
 
-        public async Task OnGetAsync(string searchName)
+        public async Task OnGetAsync(string searchName, int? catSearch)
         {
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString(SessionKeyLogin)))
             {
@@ -49,6 +51,12 @@ namespace PizzaShop.Pages
                     searchName.Trim().ToLower()
                     )).ToList();
             }
+            if(catSearch != null)
+            {
+                this.catSearch = catSearch;
+                Products = Products.Where( x => x.categoryId == catSearch).ToList();
+            }
+            listCat = _context.categories.ToList();
         }
     }
 }
